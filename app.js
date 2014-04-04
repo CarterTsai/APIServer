@@ -26,9 +26,19 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 
+// Using Express behind a reverse proxy
+app.enable('trust proxy');
+
 app.use(express.cookieParser());
 app.use(express.bodyParser());
-app.use(express.session({ secret: 'c8d62d23fc909ec5dd5c51c0119bc5a8f2702fca' }));
+app.use(express.session({ 
+    secret: 'c8d62d23fc909ec5dd5c51c0119bc5a8f2702fca',
+    expires: new Date(Date.now() + 60 * 10000), 
+    maxAge: 30*10000,
+    cookie: {secure: true, maxAge:null},
+    proxy: true,
+    key: 'session.sid'
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
