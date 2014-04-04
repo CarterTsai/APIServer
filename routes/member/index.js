@@ -1,6 +1,7 @@
 var MEMBER = module.exports = {};
 
 MEMBER.login = function(req, res){
+    console.log(req);
     res.send("login respond with a resource");
 };
 

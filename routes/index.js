@@ -7,5 +7,6 @@ exports.path = function(app){
     app.post('/api/member/login', 
                 passport.authenticate("local"),
                 api.member.login);
+
     app.post('/api/member/logout', api.member.logout); 
 };
