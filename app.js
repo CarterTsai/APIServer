@@ -5,10 +5,18 @@
 var express = require('express');
 var routes = require('./routes');
 var http = require('http');
+var https = require('https');
 var path = require('path');
 var passport = require('passport');
 var config = require('./lib/config');
 var app = express();
+
+// Https
+//var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
+//var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+//var credentials = {key: privateKey, cert: certificate};
+
+
 
 // all environments
 app.set('port', process.env.PORT || 1337);
@@ -42,3 +50,6 @@ routes.path(app);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+// Https
+//https.createServer(credentials, app).listen(443);
