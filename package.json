@@ -1,6 +1,7 @@
 {
   "name": "api-server",
   "version": "0.0.1",
+  "author": "Carter Tsai <hamming1@gmail.com>",
   "private": true,
   "scripts": {
     "start": "node app.js",
@@ -15,5 +16,6 @@
   },
   "engines": {
     "node": "0.10.26"
-  }
+  },
+  "license": "MIT"
 }
