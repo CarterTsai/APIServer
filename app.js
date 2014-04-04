@@ -10,13 +10,12 @@ var path = require('path');
 var passport = require('passport');
 var config = require('./lib/config');
 var app = express();
+var fs = require('fs');
 
 // Https
-//var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-//var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
-//var credentials = {key: privateKey, cert: certificate};
-
-
+var privateKey  = fs.readFileSync('/tmp/ssl/server-key.pem', 'utf8');
+var certificate = fs.readFileSync('/tmp/ssl/server-cert.pem', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
 
 // all environments
 app.set('port', process.env.PORT || 1337);
@@ -52,4 +51,4 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 // Https
-//https.createServer(credentials, app).listen(443);
+https.createServer(credentials, app).listen(443);
