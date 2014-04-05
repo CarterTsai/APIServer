@@ -9,4 +9,5 @@ exports.path = function(app){
                 api.member.login);
 
     app.post('/api/member/logout', api.member.logout); 
+    app.post('/api/auth/access_token', api.auth.access_token); 
 };
