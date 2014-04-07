@@ -67,6 +67,8 @@ app.use(function(req, res, next) {
 
 // Passport Config
 config.passport(passport);
+// OAuth2 
+config.oauth2(app);
 
 // development only
 if ('development' == app.get('env')) {

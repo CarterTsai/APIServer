@@ -10,4 +10,8 @@ exports.path = function(app){
 
     app.post('/api/member/logout', api.member.logout); 
     app.post('/api/auth/access_token', api.auth.access_token); 
+    app.post('/api/test', app.oauth.authorise(), function(req, res){
+        console.log("123");
+        res.send('Secret area');
+    }); 
 };
