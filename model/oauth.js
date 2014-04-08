@@ -13,6 +13,9 @@ var oauthAccessTokens = [],
         password: [
             'thom'
         ],
+        authorization_code : [
+            'thom'
+        ],
         refreshToken: [
           'thom'
         ]
@@ -51,10 +54,25 @@ MODEL.getClient = function (clientId, clientSecret, callback) {
     for(var i = 0, len = oauthClients.length; i < len; i++) {
         var elem = oauthClients[i];
         if(elem.clientId === clientId && elem.clientSecret === clientSecret) {
+            console.log(elem);
             return callback(false, elem);
         }
-    }
+}
+
+
     callback(false, false);
+}
+
+MODEL.getAuthCode = function (refreshToken, callback) {
+    if(refreshToken === "abc123") {
+        callback(false, {
+            clientId: 'thom',
+            expires: new Date(),
+            userId: '123'
+        });
+    } else {
+        callback(false, false);
+    }
 }
 
 MODEL.getRefreshToken = function (bearerToken, callback) {
@@ -68,6 +86,7 @@ MODEL.getRefreshToken = function (bearerToken, callback) {
 }
 
 MODEL.grantTypeAllowed = function (clientId, grantType, callback) {
+    console.log(grantType);
   callback(false, authorizedClientIds[grantType] &&
     authorizedClientIds[grantType].indexOf(clientId.toLowerCase()) >= 0);
 };
